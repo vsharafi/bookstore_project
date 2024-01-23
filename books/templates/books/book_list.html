@@ -1,12 +1,14 @@
 {% extends '_base.html' %}
 {% block page_title %}
-لیست کتاب ها{% endblock page_title %}
+Books List
+{% endblock page_title %}
 
 {% block content %}
     {% for book in books %}
-        <h1>{{ book.title }}</h1>
+        <h1><a href="{{ book.get_absolute_url }}">{{ book.title }}</a></h1>
         <p>{{ book.author }}</p>
         <p>{{ book.description }}</p>
+        <a href="{% url 'book_detail' pk=book.pk %}">Read More</a>
         <p>+++++++++++++++++++++++++++</p>
     {% endfor %}
 
