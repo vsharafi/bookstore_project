@@ -11,5 +11,6 @@ Books List
         <a href="{% url 'book_detail' pk=book.pk %}">Read More</a>
         <p>+++++++++++++++++++++++++++</p>
     {% endfor %}
+    <a href="{% url 'book_create' %}">اضافه کردن کتاب جدید</a>
 
 {% endblock content %}
