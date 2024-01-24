@@ -2,8 +2,10 @@
 {% block page_title %}{{ book.title }}{% endblock page_title %}
 
 {% block content %}
-<h1>{{ book.title }}</h1>
-<p>{{ book.author }}</p>
-<p>{{ book.description }}</p>
+    <h1>{{ book.title }}</h1>
+    <p>{{ book.author }}</p>
+    <p>{{ book.description }}</p>
     <h4>{{ book.price }}</h4>
+    <a class="btn btn-secondary" href="{% url 'book_update' book.pk %}">ویرایش اطلاعات</a>
+    <a class="btn btn-warning" href="{% url 'book_delete' book.pk %}">حذف کتاب</a>
 {% endblock content %}
