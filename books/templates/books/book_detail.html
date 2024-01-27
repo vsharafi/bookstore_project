@@ -1,4 +1,5 @@
 {% extends '_base.html' %}
+{% load static %}
 {% load book_tags %}
 {% block page_title %}{{ book.title }}{% endblock page_title %}
 
@@ -10,13 +11,20 @@
                 <div class="row w-sm-75 w-100">
                     <div class="col-xs-12 col-md-3 d-flex justify-content-center">
                         <div>
-                            <img src="https://cdn.fidibo.com/phoenixpub/content/ac631ea5-3943-40a7-b535-7a61e01a3e1f/b28f407e-de2c-48df-b8da-15fdd0ddfa0b.jpg?width=384"
-                                 class="img-fluid rounded-start" alt="...">
+                            {% if book.cover %}
+                                <img src="{{ book.cover.url }}" class="img-fluid rounded-start" alt="...">
+                            {% else %}
+                                <img src="{% static 'image_not_available.png'%}" class="img-fluid rounded-start" alt="...">
+                            {% endif %}
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-6 text-center text-md-end mt-md-1 mt-4">
                         <h1>{{ book.title }}</h1>
                         <h5 class="small my-1"><span class="text-muted">نویسنده: </span>{{ book.author }}</h5>
+                        <a href="{% url 'book_update' book.pk %}">ویرایش</a>
+                        <span> | </span>
+                        <a href="{% url 'book_delete' book.pk %}">حذف</a>
+
                     </div>
                     <div class="col-xs-12 col-md-3 d-flex flex-column">
                         <h3 class="align-self-center pt-2 text-muted align-self-md-end">

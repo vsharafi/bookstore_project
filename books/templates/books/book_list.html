@@ -1,4 +1,5 @@
 {% extends '_base.html' %}
+{% load static %}
 {% block page_title %}
     Books List
 {% endblock page_title %}
@@ -10,8 +11,13 @@
             <div class="card m-2" style="max-width: 45%">
                 <div class="row g-0 h-100" dir="rtl">
                     <div class="col-md-4">
-                        <img src="https://cdn.fidibo.com/phoenixpub/content/ac631ea5-3943-40a7-b535-7a61e01a3e1f/b28f407e-de2c-48df-b8da-15fdd0ddfa0b.jpg?width=384"
+                        {% if book.cover %}
+                        <img src="{{ book.cover.url }}"
                              class="img-fluid rounded-start" alt="...">
+                            {% else %}
+                            <img src="{% static 'image_not_available.png' %}"
+                             class="img-fluid rounded-start" alt="...">
+                        {% endif %}
                     </div>
                     <div class="col-md-8 h-100">
                         <div class="d-flex flex-column justify-content-between h-100">
