@@ -1,16 +1,32 @@
 {% extends '_base.html' %}
 {% block page_title %}
-Books List
+    Books List
 {% endblock page_title %}
 
 {% block content %}
-    {% for book in books %}
-        <h1><a href="{{ book.get_absolute_url }}">{{ book.title }}</a></h1>
-        <p>{{ book.author }}</p>
-        <p>{{ book.description|truncatewords:30 }}</p>
-        <a href="{% url 'book_detail' pk=book.pk %}">Read More</a>
-        <p>+++++++++++++++++++++++++++</p>
-    {% endfor %}
-    <a href="{% url 'book_create' %}">اضافه کردن کتاب جدید</a>
+    <div class="container mt-4">
+        <div class="row flex-row-reverse justify-content-md-center">
+            {% for book in books %}
+            <div class="card m-2" style="max-width: 45%">
+                <div class="row g-0 h-100" dir="rtl">
+                    <div class="col-md-4">
+                        <img src="https://cdn.fidibo.com/phoenixpub/content/ac631ea5-3943-40a7-b535-7a61e01a3e1f/b28f407e-de2c-48df-b8da-15fdd0ddfa0b.jpg?width=384"
+                             class="img-fluid rounded-start" alt="...">
+                    </div>
+                    <div class="col-md-8 h-100">
+                        <div class="d-flex flex-column justify-content-between h-100">
+                            <div class="card-body">
+                                <a href="{{ book.get_absolute_url    }}"><h3 class="card-title"><strong>{{ book.title }}</strong></h3></a>
+
+                                <p class="card-text pt-3">{{ book.description|truncatewords:40 }}</p>
+                                <p class="text-muted">نویسنده: {{ book.author }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
 
 {% endblock content %}
